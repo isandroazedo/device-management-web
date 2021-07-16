@@ -21,4 +21,13 @@ export class BaseService<T> {
                 catchError(ex => from([]))
             );
     }
+
+    public delete(id: number): Observable<any> {
+        const url = `${this.fullUrl}/${id}/`;
+        return this.http.delete<any>(url)
+            .pipe(
+                tap(response => response as HttpUserEvent<any>),
+                catchError(ex => from([]))
+            );
+    }
 }
