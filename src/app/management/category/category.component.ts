@@ -1,40 +1,33 @@
-import { HttpClient } from '@angular/common/http';
-import {Component, InjectionToken, Injector, OnDestroy, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
+import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Subject } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
-import { URLS } from 'src/app/app.url';
+import { takeUntil } from 'rxjs/operators';
 import { Category } from 'src/app/models/category';
-import { BaseService } from 'src/app/services/base.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { BaseComponent } from '../base.component';
 
 @Component({
   selector: 'app-category',
   templateUrl: './category.component.html',
   styleUrls: ['./category.component.scss']
 })
-export class CategoryComponent implements OnInit, OnDestroy {
-  displayedColumns: string[] = ['id', 'name', 'action'];
+export class CategoryComponent extends BaseComponent<Category> implements OnInit, OnDestroy {
+  public displayedColumns: string[] = ['id', 'name', 'action'];
+  public nextRoute = '/management/category';
 
-  public dataSource: MatTableDataSource<Category>;
-  public http: HttpClient;
-  public unsubscribe = new Subject();
-
-  constructor(public injector: Injector, public service: CategoryService, 
-    private toastr: ToastrService) {
-    this.dataSource = new MatTableDataSource<Category>();
+  constructor(public injector: Injector,
+    public service: CategoryService, 
+    protected toastr: ToastrService
+  ) {
+      super(injector, toastr, service);
   }
 
   public ngOnInit(): void {
+    super.ngOnInit();
     this.search();
   }
 
-  public ngOnDestroy() {
-    this.unsubscribe.next();
-    this.unsubscribe.complete();
-}
+  public createFormGroup() {
+  }
 
   public search(): void {
     this.service.getAll()
@@ -51,6 +44,10 @@ export class CategoryComponent implements OnInit, OnDestroy {
       this.toastr.success('Category removed successfully.')
       this.search();
     });
+  }
+
+  protected getNextRoute(): string {
+    return this.nextRoute;
   }
 
 }
