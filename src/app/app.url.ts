@@ -1,3 +1,4 @@
 export const URLS = {
-    CATEGORY: "/management/category"
+    CATEGORY: "/management/category",
+    DEVICE: "/management/device"
 }

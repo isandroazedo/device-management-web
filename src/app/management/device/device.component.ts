@@ -1,20 +1,21 @@
 import { Component, Injector, OnDestroy, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Category } from 'src/app/models/category';
-import { CategoryService } from 'src/app/services/category.service';
+import { Device } from 'src/app/models/device';
+import { DeviceService } from 'src/app/services/device.service';
 import { BaseComponent } from '../base.component';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.scss']
+  selector: 'app-device',
+  templateUrl: './device.component.html',
+  styleUrls: ['./device.component.scss']
 })
-export class CategoryComponent extends BaseComponent<Category> implements OnInit, OnDestroy {
-  public displayedColumns: string[] = ['id', 'name', 'action'];
-  public nextRoute = '/management/category';
+export class DeviceComponent extends BaseComponent<Device> implements OnInit, OnDestroy {
+
+  public displayedColumns: string[] = ['id', 'category', 'color', 'partNumber', 'action'];
+  public nextRoute = '/management/device';
 
   constructor(public injector: Injector,
-    public service: CategoryService,
+    public service: DeviceService,
     protected toastr: ToastrService
   ) {
     super(injector, toastr, service);
