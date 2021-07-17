@@ -1,0 +1,23 @@
+<div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+    <mat-card>
+        <form [formGroup]="formGroup" fxFill>
+            <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="20px">
+                <div fxLayoutAlign="start center" fxLayoutGap="20px"
+                    fxLayout.xs="column" fxLayoutAlign.xs="start stretch">
+                    <mat-form-field fxFlex>
+                        <mat-label>Name</mat-label>
+                        <input matInput type="text" maxlength="128" formControlName="name" required autoFocus>
+                        <mat-error validator></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-button mat-stroked-button type="button" (click)="cancel()">
+                Cancel
+            </button>
+            <button mat-button mat-raised-button type="submit" color="success" [disabled]="!formGroup.valid"
+                    (click)="save()">
+                Save
+            </button>
+        </form>
+    </mat-card>
+</div>
