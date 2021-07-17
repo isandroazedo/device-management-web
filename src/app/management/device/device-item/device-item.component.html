@@ -1,0 +1,48 @@
+<div fxLayout="column" fxLayoutAlign="space-around stretch" fxLayoutGap="20px">
+    <mat-card>
+        <mat-card-title>
+            <h2>Add device</h2>
+        </mat-card-title>
+        <form [formGroup]="formGroup" fxFill>
+            <div fxLayout="column" fxLayoutAlign="space-evenly stretch" fxLayoutGap="20px">
+                <div fxLayoutAlign="start center" fxLayoutGap="20px" fxLayout.xs="column"
+                    fxLayoutAlign.xs="start stretch">
+                    <mat-form-field fxFlex>
+                        <mat-label>Category</mat-label>
+                        <input matInput type="text" formControlName="category" required autoFocus>
+                        <mat-select formControlName="category" required autoFocus>
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let cat of categories" [value]="cat.id">
+                              {{cat.name}}
+                            </mat-option>
+                          </mat-select>
+                        <mat-error validator></mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="start center" fxLayoutGap="20px" fxLayout.xs="column"
+                    fxLayoutAlign.xs="start stretch">
+                    <mat-form-field fxFlex>
+                        <mat-label>Color</mat-label>
+                        <input matInput type="text" id="color" maxlength="128" formControlName="color" required>
+                        <mat-error validator></mat-error>
+                    </mat-form-field>
+                </div>
+                <div fxLayoutAlign="start center" fxLayoutGap="20px" fxLayout.xs="column"
+                    fxLayoutAlign.xs="start stretch">
+                    <mat-form-field fxFlex>
+                        <mat-label>Part Number</mat-label>
+                        <input matInput type="number" id="partNumber" formControlName="partNumber" required>
+                        <mat-error validator></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-button mat-stroked-button type="button" (click)="cancel()">
+                Cancel
+            </button>
+            <button mat-button mat-raised-button type="submit" color="success" [disabled]="!formGroup.valid"
+                (click)="save()">
+                Save
+            </button>
+        </form>
+    </mat-card>
+</div>
