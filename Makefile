@@ -5,3 +5,7 @@ image:
 .PHONY: run-app
 run:
 	@docker run --name device-management-web -d -p 8080:80 github.com/isandroazedo/device-management-web
+
+.PHONY: build-base-image
+base-image:
+	@docker build -f Dockerfile.base -t github.com/isandroazedo/device-management-web-base .
