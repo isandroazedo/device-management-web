@@ -23,8 +23,9 @@
                     fxLayoutAlign.xs="start stretch">
                     <mat-form-field fxFlex>
                         <mat-label>Color</mat-label>
-                        <input matInput type="text" id="color" maxlength="128" formControlName="color" required>
-                        <mat-error validator>Required field</mat-error>
+                        <input matInput type="text" id="color" ng-maxlength="128" formControlName="color" required>
+                        <mat-error validator *ngIf="color?.errors?.required">Required field</mat-error>
+                        <mat-error validator *ngIf="color?.errors?.maxlength">Invalid value</mat-error>
                     </mat-form-field>
                 </div>
                 <div fxLayoutAlign="start center" fxLayoutGap="20px" fxLayout.xs="column"

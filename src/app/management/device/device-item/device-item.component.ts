@@ -51,4 +51,8 @@ export class DeviceItemComponent extends BaseComponent<Device> implements OnInit
     return this.nextRoute;
   }
 
+  get color() {
+    return this.formGroup.get('color');
+  }
+
 }
