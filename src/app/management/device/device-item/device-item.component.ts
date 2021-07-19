@@ -35,10 +35,11 @@ export class DeviceItemComponent extends BaseComponent<Device> implements OnInit
 
   public createFormGroup(): void {
     this.formGroup = this.formBuilder.group({
-        category: ['', Validators.required],
-        color: ['', Validators.required],
-        partNumber: ['', Validators.required]
+        category: [null, Validators.required],
+        color: [null, [Validators.required, Validators.maxLength(128)]],
+        partNumber: [null, Validators.required]
     });
+    this.formGroup.updateValueAndValidity();
   }
 
   public cancel() {
